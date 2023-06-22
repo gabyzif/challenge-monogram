@@ -13,7 +13,7 @@ const Hero = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu augue massa, tincidunt proin nunc
             viverra tristique tempor, ipsum. At lectus vel pretium tempor ut dui vivamus sit.
           </p>
-          <img className="m-auto" src="/images/mouse-line.svg" alt="Mouse Line" />
+          <img className="m-auto w-8 lg:w-auto" src="/images/mouse-line.svg" alt="Mouse Line" />
         </div>
         <div className="mt-[-100px] overflow-hidden ">
           <HeroGraphics image1="/images/hero-rectangle.png" image2="/images/hero-rectangle-2.png" />
