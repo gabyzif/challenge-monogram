@@ -8,6 +8,9 @@
   --color-gray: rgba(255, 255, 255, 0.5);
 }
 
+body {
+  font-family: Inter;
+}
 .title {
   font-size: 2.2rem;
   font-family: Inter;
