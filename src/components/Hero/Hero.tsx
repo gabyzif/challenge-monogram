@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import HeroGraphics from './HeroGraphics';
-import './Hero.css';
+import './hero.css';
 const Hero = () => {
   return (
     <div className="pl-[7.25rem]">
