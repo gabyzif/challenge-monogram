@@ -1,4 +1,5 @@
 import Logo from './Logo';
+import SphereSection from './SphereSection';
 
 const DarkSection = () => {
   const border = 'border-l-[1px] border-dashed border-[#E8E8E8]  border-opacity-20';
@@ -24,6 +25,7 @@ const DarkSection = () => {
           <Logo className="m-auto mt-[600px]" src="/images/svelte-logo.svg" />
         </div>
       </div>
+      <SphereSection />
     </div>
   );
 };
