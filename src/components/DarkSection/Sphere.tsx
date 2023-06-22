@@ -105,7 +105,7 @@ const Sphere = () => {
     };
   }, []);
 
-  return <div className="Contenedor3D" ref={mountRef} style={{ width: '100%', height: '20vh' }}></div>;
+  return <div className="Contenedor3D" ref={mountRef} style={{ width: '100%', height: '500px' }}></div>;
 };
 
 export default Sphere;
