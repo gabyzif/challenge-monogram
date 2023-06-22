@@ -1,0 +1,5 @@
+.textWithImage {
+  background: url(/images/background.png) no-repeat right top;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
