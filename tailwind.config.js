@@ -15,7 +15,8 @@ module.exports = {
     colors: {
       primary: 'var(--color-primary)',
       secondary: 'var(--color-secondary)',
-      translucidGray: 'var(--color-gray)'
+      translucidGray: 'var(--color-gray)',
+      white: '#fff'
     }
   },
   plugins: []

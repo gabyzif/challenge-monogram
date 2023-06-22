@@ -8,11 +8,7 @@
   --color-gray: rgba(255, 255, 255, 0.5);
 }
 
-body {
-}
-
 .title {
-  color: var(--color-primary);
   font-size: 8.3125rem;
   font-family: Inter;
   font-weight: 900;
@@ -21,7 +17,6 @@ body {
 }
 
 .subtitle {
-  color: var(--color-secondary);
   font-size: 1.125rem;
   font-family: Inter;
   font-weight: 300;
