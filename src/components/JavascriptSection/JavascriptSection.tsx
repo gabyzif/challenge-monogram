@@ -5,10 +5,10 @@ const JavascriptSection = () => {
   return (
     <>
       <div className="relative m-auto  ">
-        <div className="sectionBackground m-auto mx-[2rem] py-10 lg:mx-[3.25rem]">
-          <div className="m-auto mb-20 text-center lg:w-2/4">
+        <div className="sectionBackground m-auto mx-[2rem] h-[400px] py-10 lg:mx-[3.25rem] lg:h-[900px]">
+          <div className="m-auto mb-5 text-center lg:mb-20 lg:w-2/4">
             <h2 className="title mb-5 text-white">javascript</h2>
-            <p className="subtitle px-20 text-white">
+            <p className="subtitle px-10 text-white lg:px-20">
               Statically generated pages are brought to life with client-side JavaScript libraries and
               frameworks, such as Algolia and Next.js.
             </p>

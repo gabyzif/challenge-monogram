@@ -9,8 +9,8 @@ export default function Home() {
     <main className="mt-[4.5rem]">
       <Hero />
       <JavascriptSection />
-      {/* <DarkSection />
-      <MarkupSection />
+      <DarkSection />
+      {/* <MarkupSection />
       <AuditSection /> */}
     </main>
   );

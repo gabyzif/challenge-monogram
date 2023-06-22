@@ -1,7 +1,6 @@
 .sectionBackground {
   background-image: url('/images/background.png');
   background-position: right bottom;
-  height: 900px;
   -webkit-clip-path: url(#clipPath);
   clip-path: url(#clipPath);
 }
