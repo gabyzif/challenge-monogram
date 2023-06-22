@@ -1,39 +1,61 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const Sphere = () => {
-  const containerRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
+  const mountRef = useRef(null);
 
   useEffect(() => {
-    let container = containerRef.current;
-    let width = container.offsetWidth;
-    let height = container.offsetHeight;
+    //Data from the canvas
+    const currentRef = mountRef.current;
+    const { clientWidth: width, clientHeight: height } = currentRef;
 
-    // SETUP SCENE
+    //Scene, camera, renderer
     const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(25, width / height, 0.1, 100);
+    scene.add(camera);
+    camera.position.set(5, 5, 5);
+    camera.lookAt(new THREE.Vector3());
 
-    // SETUP RENDERER
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setClearColor(0x000000, 0);
-    renderer.setSize(width, height);
-    container.appendChild(renderer.domElement);
-
-    // SETUP lights
-    const light1 = new THREE.PointLight(0x5a54ff, 0.75);
+    var light1 = new THREE.PointLight(0x5a54ff, 0.75);
     light1.position.set(-150, 150, -50);
 
-    const light2 = new THREE.PointLight(0x4158f6, 0.75);
+    var light2 = new THREE.PointLight(0x4158f6, 0.75);
     light2.position.set(-400, 200, 150);
 
-    const light3 = new THREE.PointLight(0x803bff, 0.7);
+    var light3 = new THREE.PointLight(0x803bff, 0.7);
     light3.position.set(100, 250, -100);
 
     scene.add(light1, light2, light3);
 
-    // SETUP GEOMETRY
-    // setup halo
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setClearColor(0x000000, 0);
+    renderer.setSize(width, height);
+    scene.background = null;
+    currentRef.appendChild(renderer.domElement);
+
+    //OrbitControls
+    const orbitControls = new OrbitControls(camera, renderer.domElement);
+    orbitControls.enableDamping = true;
+
+    //Resize canvas
+    const resize = () => {
+      renderer.setSize(currentRef.clientWidth, currentRef.clientHeight);
+      camera.aspect = currentRef.clientWidth / currentRef.clientHeight;
+      camera.updateProjectionMatrix();
+    };
+    window.addEventListener('resize', resize);
+
+    //Animate the scene
+    const animate = () => {
+      orbitControls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    };
+    animate();
+
+    //halo
     const atmosphereShader = {
       atmosphere: {
         uniforms: {},
@@ -67,9 +89,7 @@ const Sphere = () => {
     atm.scale.set(1.05, 1.05, 1.05);
     scene.add(atm);
 
-    atm.position.set(-0.1, 0.1, 0);
-
-    // setup globe
+    //sphere
     const sphereGeometry = new THREE.SphereGeometry(2, 64, 64);
     const sphereMaterial = new THREE.MeshLambertMaterial({
       color: 0xeeeeee
@@ -79,70 +99,13 @@ const Sphere = () => {
     sphere.receiveShadow = true;
     scene.add(sphere);
 
-    // SETUP camera
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.z = 6;
-
-    // ANIMATION LOOP
-    const animate = function () {
-      requestAnimationFrame(animate);
-
-      if (!isDragging) {
-        sphere.rotation.y += 0.0005;
-      }
-
-      renderer.render(scene, camera);
-    };
-
-    animate();
-
-    // Handle window resize
-    const handleResize = () => {
-      width = container.offsetWidth;
-      height = container.offsetHeight;
-      renderer.setSize(width, height);
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup event listener on unmount
-
-    const handleMouseDown = () => {
-      setIsDragging(true);
-    };
-
-    const handleMouseMove = (e) => {
-      const deltaMove = {
-        x: e.offsetX - previousMousePosition.x
-      };
-
-      if (isDragging) {
-        sphere.rotation.y += deltaMove.x * 0.004;
-      }
-
-      previousMousePosition.x = e.offsetX;
-      previousMousePosition.y = e.offsetY;
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
-
-    container.addEventListener('mousedown', handleMouseDown);
-    container.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-
     return () => {
-      window.removeEventListener('resize', handleResize);
-      container.removeEventListener('mousedown', handleMouseDown);
-      container.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('resize', resize);
+      currentRef.removeChild(renderer.domElement);
     };
   }, []);
 
-  return <div id="globeCanvas" ref={containerRef} style={{ width: '100%', height: '100%' }} />;
+  return <div className="Contenedor3D" ref={mountRef} style={{ width: '100%', height: '20vh' }}></div>;
 };
 
 export default Sphere;
