@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Hero from '../components/Hero/Hero';
 import JavascriptSection from '@/components/JavascriptSection/JavascriptSection';
 import DarkSection from '@/components/DarkSection/DarkSection';
+import MarkupSection from '@/components/Markup/MarkupSection';
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <JavascriptSection />
       <DarkSection />
+      <MarkupSection />
     </main>
   );
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import HeroGraphics from './HeroGraphics';
+import HeroGraphics from '../HeroGraphics';
 import './hero.css';
 const Hero = () => {
   return (
