@@ -9,18 +9,17 @@
 }
 
 .title {
-  font-size: 8.3125rem;
+  font-size: 2.2rem;
   font-family: Inter;
   font-weight: 900;
-  line-height: 152.5px;
-  letter-spacing: -5.187px;
+  letter-spacing: -2px;
 }
 
 .subtitle {
-  font-size: 1.125rem;
+  font-size: 0.75rem;
   font-family: Inter;
   font-weight: 300;
-  line-height: 195.5%;
+  line-height: 150%;
   letter-spacing: 0.00563rem;
 }
 
@@ -31,4 +30,41 @@
   font-family: Inter;
   font-weight: 900;
   letter-spacing: -0.18525rem;
+}
+
+@media (min-width: 425px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    line-height: 180%;
+  }
+}
+@screen lg {
+  .title {
+    font-size: 8.3125rem;
+    font-family: Inter;
+    font-weight: 900;
+    line-height: 152.5px;
+    letter-spacing: -5.187px;
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: 195.5%;
+    letter-spacing: 0.00563rem;
+  }
+
+  .titleSmall {
+    color: #efffe2;
+    text-align: center;
+    font-size: 4.75rem;
+    font-family: Inter;
+    font-weight: 900;
+    letter-spacing: -0.18525rem;
+  }
 }

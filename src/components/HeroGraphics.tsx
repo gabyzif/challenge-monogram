@@ -2,14 +2,22 @@
 const HeroGraphics = ({ image1, image2 }) => {
   return (
     <div className="relative flex h-full w-full">
-      <div className="relative top-[200px] mr-[46px] ">
-        <img className="h-[629px] w-[280px] rounded-[68px]	" src={image1} alt="Hero" />
-        <div className="relative left-[150px] mt-[-250px] h-[479px] w-[280px] rounded-[70px] bg-translucidGray backdrop-blur-md" />
+      <div className="relative top-[100px] mr-[16px]  lg:top-[200px] lg:mr-[46px]">
+        <img
+          className="h-[209px] w-[93px] rounded-[20px] lg:h-[629px] lg:w-[280px] lg:rounded-[68px]"
+          src={image1}
+          alt="Hero"
+        />
+        <div className="relative left-[30px] mt-[-150px] h-[159px] w-[93px] rounded-[20px] bg-translucidGray backdrop-blur-md lg:left-[150px] lg:mt-[-250px] lg:h-[479px] lg:w-[280px] lg:rounded-[70px]" />
       </div>
 
       <div>
-        <img className="h-[670px] w-[278px] rounded-[68px]" src={image2} alt="Hero" />
-        <div className="relative left-[150px] mt-[-350px] h-[662px] w-[280px] rounded-[70px] bg-translucidGray backdrop-blur-md" />
+        <img
+          className="h-[223px] w-[93px] rounded-[20px] lg:h-[670px] lg:w-[278px] lg:rounded-[68px]"
+          src={image2}
+          alt="Hero"
+        />
+        <div className="relative left-[30px] mt-[-150px] h-[220px] w-[93px] rounded-[20px] bg-translucidGray backdrop-blur-md lg:left-[150px] lg:mt-[-350px] lg:h-[662px] lg:w-[280px] lg:rounded-[70px]" />
       </div>
     </div>
   );
