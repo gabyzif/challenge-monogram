@@ -4,7 +4,7 @@ import './AuditSection.css';
 const AuditSection = () => {
   return (
     <div className="bg-primary">
-      <div className="background  mix-blend-revert relative  top-[-30px] mx-3  py-[4rem] pb-40 lg:top-[-70px]  lg:m-auto lg:mx-0 lg:w-2/4 ">
+      <div className="background  mix-blend-revert relative  top-[-30px] mx-3  py-[4rem] pb-40 lg:top-[-70px]  lg:m-auto  lg:w-2/4 ">
         <h3 className="titleSmall">top audit scores</h3>
         <div className="my-10 flex justify-center gap-6">
           <GlowingNumbers hasGlow={true} />
