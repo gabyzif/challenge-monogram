@@ -16,7 +16,7 @@ const Hero = () => {
           <img className="m-auto" src="/images/mouse-line.svg" alt="Mouse Line" />
         </div>
         <div className="mt-[-100px] overflow-hidden ">
-          <HeroGraphics />
+          <HeroGraphics image1="/images/hero-rectangle.png" image2="/images/hero-rectangle-2.png" />
         </div>
       </div>
     </div>
