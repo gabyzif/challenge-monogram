@@ -5,8 +5,8 @@ const MarkupSection = () => {
     <div className="mt-[100px] ">
       <div className="flex  ">
         <div className="w-6/12">
-          <h1 className="title mb-10 pl-[7.25rem]">markup</h1>
-          <p className="subtitle mb-[100px]  pl-[7.25rem] text-secondary">
+          <h1 className="title mb-10 pl-[2rem] lg:pl-[7.25rem]">markup</h1>
+          <p className="subtitle mb-[100px] pl-[2rem] text-secondary lg:pl-[7.25rem]">
             When ready for deployment, a static-site generator such as Astro or Next.js is used to compile the
             website. The end result is a collection of pre-rendered HTML pages that can be delivered
             lightning-fast over a CDN like Vercel’s Edge Network.{' '}

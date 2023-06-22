@@ -7,7 +7,7 @@ const DarkSection = () => {
 
   return (
     <>
-      <div className="-mt-[500px] h-[1500px] bg-primary px-[3rem] lg:-mt-[1000px] lg:h-[2000px]  lg:px-[7.25rem] ">
+      <div className="-mt-[500px] h-[1200px] bg-primary px-[3rem] lg:-mt-[1000px] lg:h-[2000px]  lg:px-[7.25rem] ">
         <div className="grid grid-cols-4">
           <div className={`h-[2000px] ${border} `}>
             <Logo className="m-auto mt-[250px]  lg:mt-[600px]" src="/images/react-logo.svg" />
@@ -28,7 +28,7 @@ const DarkSection = () => {
         </div>
       </div>
       <img src="images/squiggly-dark.svg" className="w-full" />
-      <div className="mt-[-860px] md:mt-[-560px]">
+      <div className="mt-[-460px] md:mt-[-560px]">
         <SphereSection />
       </div>
     </>

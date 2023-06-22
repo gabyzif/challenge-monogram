@@ -10,8 +10,8 @@ export default function Home() {
       <Hero />
       <JavascriptSection />
       <DarkSection />
-      {/* <MarkupSection />
-      <AuditSection /> */}
+      <MarkupSection />
+      <AuditSection />
     </main>
   );
 }
