@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import HeroGraphics from '../HeroGraphics';
+import TetrisGame from './TetrisGame';
 const MarkupSection = () => {
   return (
     <div className="mt-[100px] ">
@@ -11,14 +12,14 @@ const MarkupSection = () => {
             website. The end result is a collection of pre-rendered HTML pages that can be delivered
             lightning-fast over a CDN like Vercel’s Edge Network.{' '}
           </p>
-          <img className="mb-[200px] pl-[2rem]" src="/images/toppled-blocks.svg" alt="blocks" />
+          {/* <img className="mb-[200px] pl-[2rem]" src="/images/toppled-blocks.svg" alt="blocks" /> */}
         </div>
         <div className="mt-[-100px] overflow-hidden ">
           <HeroGraphics image1="/images/hero-2-rectangle.png" image2="/images/hero-2-rectangle-2.png" />
         </div>
       </div>
       <div className="w-fill">
-        <img className="m-auto" src="/images/wall-of-blocks.svg" alt="blocks" />
+        <TetrisGame />
       </div>
     </div>
   );

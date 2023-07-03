@@ -1,5 +1,46 @@
 .textWithImage {
   background: url(/images/background.png) no-repeat right top;
   -webkit-background-clip: text;
+  background-size: cover;
   -webkit-text-fill-color: transparent;
+  animation: background-text-animation 15s linear infinite;
+}
+
+@keyframes background-text-animation {
+  0% {
+    background-position: left 0px top 50%;
+  }
+  50% {
+    background-position: left 500px top 50%;
+  }
+  100% {
+    background-position: left 0px top 50%;
+  }
+}
+
+h1 {
+  animation: move linear 2000ms infinite;
+}
+
+@keyframes move {
+  0% {
+    text-shadow: 4px -4px 0 #fd8f77, 3px -3px 0 #fd8f77, 2px -2px 0 #fd8f77, 1px -1px 0 #fd8f77,
+      -4px 4px 0 #fedc8d, -3px 3px 0 #fedc8d, -2px 2px 0 #fedc8d, -1px 1px 0 #fedc8d;
+  }
+  25% {
+    text-shadow: -4px -4px 0 #fedc8d, -3px -3px 0 #fedc8d, -2px -2px 0 #fedc8d, -1px -1px 0 #fedc8d,
+      4px 4px 0 #fd8f77, 3px 3px 0 #fd8f77, 2px 2px 0 #fd8f77, 1px 1px 0 #fd8f77;
+  }
+  50% {
+    text-shadow: -4px 4px 0 #fd8f77, -3px 3px 0 #fd8f77, -2px 2px 0 #fd8f77, -1px 1px 0 #fd8f77,
+      4px -4px 0 #fedc8d, 3px -3px 0 #fedc8d, 2px -2px 0 #fedc8d, 1px -1px 0 #fedc8d;
+  }
+  75% {
+    text-shadow: 4px 4px 0 #fedc8d, 3px 3px 0 #fedc8d, 2px 2px 0 #fedc8d, 1px 1px 0 #fedc8d,
+      -4px -4px 0 #fd8f77, -3px -3px 0 #fd8f77, -2px -2px 0 #fd8f77, -1px -1px 0 #fd8f77;
+  }
+  100% {
+    text-shadow: 4px -4px 0 #fd8f77, 3px -3px 0 #fd8f77, 2px -2px 0 #fd8f77, 1px -1px 0 #fd8f77,
+      -4px 4px 0 #fedc8d, -3px 3px 0 #fedc8d, -2px 2px 0 #fedc8d, -1px 1px 0 #fedc8d;
+  }
 }
