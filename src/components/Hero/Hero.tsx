@@ -25,7 +25,7 @@ const Hero = () => {
     });
 
     tl.to('#rec', {
-      duration: 0.1,
+      duration: 1,
       ease: 'none',
       motionPath: {
         path: '#path',

@@ -1,11 +1,37 @@
-import DarkSection from '../DarkSection/DarkSection';
+'use client';
+import React, { useEffect, useRef } from 'react';
 import Computer from './Computer';
 import './JavascriptSection.css';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 const JavascriptSection = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const sectionElement = sectionRef.current;
+
+    gsap.to(sectionElement, {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: sectionElement,
+        start: 'top 5%',
+        end: 'bottom 5%',
+        scrub: true
+      }
+    });
+  }, []);
+
   return (
     <>
-      <div className="relative m-auto  ">
-        <div className="sectionBackground m-auto mx-[2rem] h-[400px] py-10 lg:mx-[3.25rem] lg:h-[900px]">
+      <div className="relative m-auto">
+        <div
+          className="sectionBackground m-auto mx-[2rem] h-[400px] py-10 lg:mx-[3.25rem] lg:h-[900px]"
+          ref={sectionRef}
+          style={{ opacity: 1, transform: 'translateY(0)' }}
+        >
           <div className="m-auto mb-5 text-center lg:mb-20 lg:w-2/4">
             <h2 className="title mb-5 text-white">javascript</h2>
             <p className="subtitle px-10 text-white lg:px-20">

@@ -93,3 +93,39 @@ h3 {
     letter-spacing: -0.18525rem;
   }
 }
+.typewriter {
+  font-size: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+}
+
+.typewriter code {
+  display: block;
+  padding: 1rem;
+  animation: typing 3.5s steps(40, end) infinite;
+  animation-fill-mode: forwards;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+pre {
+  padding: 10rem;
+  overflow: auto;
+  border-radius: 3px;
+  max-width: 100%;
+}
