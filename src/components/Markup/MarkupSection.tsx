@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import HeroGraphics from '../HeroGraphics';
-import TetrisGame from './TetrisGame';
+import ContainerBlocks from './TetrisGame';
 const MarkupSection = () => {
   return (
     <div className="mt-[100px] ">
@@ -19,7 +19,7 @@ const MarkupSection = () => {
         </div>
       </div>
       <div className="w-fill">
-        <TetrisGame />
+        <ContainerBlocks />
       </div>
     </div>
   );

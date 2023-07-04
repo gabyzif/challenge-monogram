@@ -27,7 +27,7 @@ const DarkSection = () => {
           </div>
         </div>
       </div>
-      <img src="images/squiggly-dark.svg" className="w-full" />
+      <img src="images/squiggly-dark.svg" className=" w-full" />
       <div className="mt-[-460px] md:mt-[-560px]">
         <SphereSection />
       </div>

@@ -1,44 +1,6 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap, SteppedEase } from 'gsap';
-import { CodeBlock } from 'react-code-blocks';
 
 const Computer = () => {
-  const animRef = useRef(null);
-
-  useEffect(() => {
-    const tl = gsap.timeline({ paused: true });
-
-    tl.fromTo(
-      animRef.current,
-      { width: '0' },
-      {
-        width: '20.18em',
-        ease: 'steps(37)',
-        duration: 8
-      },
-      0
-    );
-
-    tl.fromTo(
-      animRef.current,
-      { 'border-right-color': 'rgba(255,255,255,0.75)' },
-      {
-        'border-right-color': 'rgba(255,255,255,0)',
-        repeat: -1,
-        ease: 'steps(37)',
-        duration: 0.5
-      },
-      0
-    );
-
-    tl.play();
-
-    return () => {
-      tl.kill();
-    };
-  }, []);
-
   const copy = `
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 

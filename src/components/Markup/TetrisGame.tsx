@@ -1,121 +1,135 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import React, { useState, useEffect } from 'react';
 
-const TetrisGame = () => {
-  const containerRef = useRef(null);
+const Container = () => {
+  const [blocks, setBlocks] = useState([]);
+  const [landedBlocks, setLandedBlocks] = useState([]);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const containerWidth = 5; // Number of blocks horizontally
+  const containerHeight = 10; // Number of blocks vertically
+  const blockSizeHeight = 50; // Size of each block in pixels
+  const blockSizeWidth = 300; // Size of each block in pixels
+  const blockColors = ['#D12510', '#FEC05C', '#0165B1', '#000', '#ccc']; // Different colors for blocks
 
-  const addRectangles = () => {
-    const rectConfigurations = [
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 },
-      { width: 320, height: 57, rx: 7 }
-    ];
-
-    const container = containerRef.current;
-
-    // Calculate the number of lines and spacing between them
-    const numLines = 3;
-    const lineHeight = rectConfigurations[0].height;
-    const spacing = 10;
-    const totalHeight = numLines * lineHeight + (numLines - 1) * spacing;
-
-    // Calculate the available width for blocks
-    const availableWidth = 1512;
-
-    // Calculate the maximum number of blocks that can fit in a line
-    const maxBlocksPerLine = Math.floor(availableWidth / rectConfigurations[0].width);
-
-    // Calculate the spacing between blocks within a line
-    const blockSpacing =
-      (availableWidth - maxBlocksPerLine * rectConfigurations[0].width) / (maxBlocksPerLine - 1);
-
-    // Calculate the starting Y position for the first line
-    const startY = -totalHeight;
-
-    rectConfigurations.forEach((rectConfig, index) => {
-      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      const lineIndex = Math.floor(index / maxBlocksPerLine);
-      const x = (index % maxBlocksPerLine) * (rectConfig.width + blockSpacing);
-      const y = startY + lineIndex * (lineHeight + spacing);
-
-      rect.setAttribute('x', x);
-      rect.setAttribute('y', y);
-      rect.setAttribute('width', rectConfig.width);
-      rect.setAttribute('height', rectConfig.height);
-      rect.setAttribute('rx', rectConfig.rx);
-      rect.setAttribute('fill', getRandomColor());
-      rect.setAttribute('opacity', getRandomOpacity());
-
-      container.appendChild(rect);
-
-      gsap.from(rect, {
-        y: y,
-        duration: 1,
-        ease: 'power2.out',
-        opacity: 0
-      });
-
-      if (index === rectConfigurations.length - 1) {
-        ScrollTrigger.create({
-          trigger: rect,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-          onUpdate: (self) => {
-            if (self.direction === -1 && self.progress === 0) {
-              container.removeChild(rect);
-            }
-          }
-        });
-      }
-    });
+  // Create a new block with random color
+  const createBlock = () => {
+    const randomColor = blockColors[Math.floor(Math.random() * blockColors.length)];
+    return { x: Math.floor(containerWidth / 2), y: 0, color: randomColor };
   };
 
+  // Move the current block down by one step
+  const moveBlockDown = () => {
+    setBlocks((prevBlocks) =>
+      prevBlocks.map((block) => {
+        if (block.y === containerHeight - 1 || isBlockColliding(block.x, block.y + 1)) {
+          // Block has reached the bottom of the container or collided with another block
+          setLandedBlocks((prevLandedBlocks) => [...prevLandedBlocks, block]);
+          return createBlock(); // Create a new block at the top
+        }
+        return { ...block, y: block.y + 1 };
+      })
+    );
+  };
+
+  // Check if a block is colliding with the landed blocks
+  const isBlockColliding = (x, y) => {
+    return landedBlocks.some((landedBlock) => landedBlock.x === x && landedBlock.y === y);
+  };
+
+  // Move the current block left or right
+  const moveBlockHorizontally = (deltaX) => {
+    setBlocks((prevBlocks) =>
+      prevBlocks.map((block) => {
+        const newX = block.x + deltaX;
+        if (newX < 0 || newX >= containerWidth || isBlockColliding(newX, block.y)) {
+          // Block is outside the container or colliding with another block, don't move
+          return block;
+        }
+        return { ...block, x: newX };
+      })
+    );
+  };
+
+  // Rotate the current block (not implemented in this example)
+
+  // Start a new game
+  const startGame = () => {
+    setBlocks([createBlock()]);
+    setLandedBlocks([]);
+    setIsGameOver(false);
+  };
+
+  // Game loop
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    if (!isGameOver) {
+      const interval = setInterval(() => {
+        moveBlockDown();
+      }, 1000); // Move block down every second
 
-    ScrollTrigger.addEventListener('refreshInit', addRectangles);
-    ScrollTrigger.addEventListener('scrollEnd', addRectangles);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [isGameOver]);
 
-    return () => {
-      ScrollTrigger.removeEventListener('refreshInit', addRectangles);
-      ScrollTrigger.removeEventListener('scrollEnd', addRectangles);
+  // Handle key press events for moving the block
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (!isGameOver) {
+        if (event.key === 'ArrowLeft') {
+          moveBlockHorizontally(-1); // Move block left
+        } else if (event.key === 'ArrowRight') {
+          moveBlockHorizontally(1); // Move block right
+        }
+      }
     };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [isGameOver]);
+
+  // Initialize the game when the component mounts
+  useEffect(() => {
+    startGame();
   }, []);
 
-  const getRandomColor = () => {
-    const colors = ['#D12510', '#97B1B2', '#FEC05C', '#0165B1', 'black'];
-    return colors[Math.floor(Math.random() * colors.length)];
-  };
-
-  const getRandomOpacity = () => {
-    return Math.random() * 0.4 + 0.2;
+  // Render the blocks
+  const renderBlocks = () => {
+    const allBlocks = [...blocks, ...landedBlocks];
+    return allBlocks.map((block, index) => (
+      <div
+        key={index}
+        style={{
+          position: 'absolute',
+          left: block.x * blockSizeWidth,
+          top: block.y * blockSizeHeight,
+          width: blockSizeWidth,
+          height: blockSizeHeight,
+          backgroundColor: block.color
+        }}
+      />
+    ));
   };
 
   return (
-    <svg
-      ref={containerRef}
-      width="1512"
-      height="228"
-      viewBox="0 0 1512 228"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    ></svg>
+    <div>
+      <p className="p-10">Move the arrows to play a mini-tetris!</p>
+      <div
+        style={{
+          position: 'relative',
+          height: containerHeight * blockSizeHeight,
+          margin: '0 auto'
+        }}
+      >
+        {renderBlocks()}
+      </div>
+      <button style={{ display: isGameOver ? 'block' : 'none' }} onClick={startGame}>
+        Start Game
+      </button>
+    </div>
   );
 };
 
-export default TetrisGame;
+export default Container;
